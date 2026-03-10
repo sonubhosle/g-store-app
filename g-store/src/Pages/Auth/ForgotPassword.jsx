@@ -38,6 +38,8 @@ const ForgotPassword = () => {
   };
 
 
+  const leafPattern = "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-5.807 5.807l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-11.614 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-5.807-5.807l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-11.614 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83z' fill='%2310b981' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\")";
+
   return (
     <div className="h-screen flex bg-white overflow-hidden">
       {/* Left Side: Branding/Info */}
@@ -45,11 +47,12 @@ const ForgotPassword = () => {
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="hidden lg:flex lg:w-1/2 relative bg-slate-50 flex-col justify-center p-20 overflow-hidden border-r border-slate-100"
+        className="hidden lg:flex lg:w-1/2 relative flex-col justify-center p-20 overflow-hidden border-r border-slate-100"
+        style={{ backgroundColor: '#064e3b', backgroundImage: leafPattern }}
       >
         <div className="absolute top-0 left-0 w-full h-full opacity-40">
-          <div className="absolute top-[-10%] left-[-10%] w-80 h-80 bg-emerald-100 rounded-full blur-3xl" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-100 rounded-full blur-3xl" />
+          <div className="absolute top-[-10%] left-[-10%] w-80 h-80 bg-emerald-500/20 rounded-full blur-[100px]" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-green-500/20 rounded-full blur-[100px]" />
         </div>
 
         <div className="relative z-10 w-full max-w-lg">
@@ -62,26 +65,26 @@ const ForgotPassword = () => {
             <div className="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-emerald-200">
               <ShoppingBag size={24} />
             </div>
-            <span className="text-2xl font-black text-slate-900 tracking-tighter uppercase">G-Store</span>
+            <span className="text-2xl font-black text-white tracking-tighter uppercase">Plantify</span>
           </motion.div>
 
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-5xl font-black text-slate-900 leading-tight mb-6"
+            className="text-5xl font-black text-white leading-tight mb-6"
           >
             Account <br />
-            <span className="text-emerald-600 text-6xl">Recovery.</span>
+            <span className="text-emerald-400 text-6xl">Recovery.</span>
           </motion.h1>
 
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-slate-500 text-lg font-medium mb-12 max-w-sm"
+            className="text-emerald-50 text-lg font-medium mb-12 max-w-sm"
           >
-            Don't worry, even the best of us forget. Follow the link we send to your email to regain access securely.
+            Even the most experienced gardeners forget sometimes. We'll help you get back to your plants securely.
           </motion.p>
 
         </div>
@@ -185,7 +188,7 @@ const ForgotPassword = () => {
                   </button>
 
                   <Link to="/login" className="block text-emerald-600 hover:text-emerald-700 font-semibold text-xs uppercase tracking-widest">
-                     Login
+                    Login
                   </Link>
                 </div>
               </motion.div>

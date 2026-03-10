@@ -49,6 +49,8 @@ const Login = () => {
     dispatch(loginUser({ email: formData.email.toLowerCase(), password: formData.password }));
   };
 
+  const leafPattern = "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-5.807 5.807l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-11.614 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-5.807-5.807l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-11.614 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83z' fill='%2310b981' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\")";
+
   return (
     <div className="h-screen flex bg-white overflow-hidden">
       {/* Left Side: Branding/Info (Hidden on small screens) */}
@@ -56,12 +58,13 @@ const Login = () => {
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="hidden lg:flex lg:w-1/2 relative bg-slate-50 flex-col justify-center p-20 overflow-hidden"
+        className="hidden lg:flex lg:w-1/2 relative flex-col justify-center p-20 overflow-hidden"
+        style={{ backgroundColor: '#064e3b', backgroundImage: leafPattern }}
       >
         {/* Decorative Elements */}
         <div className="absolute top-0 left-0 w-full h-full opacity-40">
-          <div className="absolute top-[-10%] left-[-10%] w-80 h-80 bg-emerald-100 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-100 rounded-full blur-3xl animate-pulse delay-700" />
+          <div className="absolute top-[-20%] left-[-20%] w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[100px]" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-green-500/20 rounded-full blur-[100px]" />
         </div>
 
         <div className="relative z-10 w-full max-w-lg">
@@ -74,26 +77,26 @@ const Login = () => {
             <div className="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-emerald-200">
               <ShoppingBag size={24} />
             </div>
-            <span className="text-2xl font-black text-slate-900 tracking-tighter uppercase">G-Store</span>
+            <span className="text-2xl font-black text-white tracking-tighter uppercase">Plantify</span>
           </motion.div>
 
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-5xl font-black text-slate-900 leading-[1.1] mb-6"
+            className="text-5xl font-black text-white leading-[1.1] mb-6"
           >
-            Experience the <br />
-            <span className="text-emerald-600">Future of Gadgets.</span>
+            Bring Nature <br />
+            <span className="text-emerald-400">Inside.</span>
           </motion.h1>
 
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-slate-500 text-lg font-medium mb-12 max-w-sm"
+            className="text-emerald-50 text-lg font-medium mb-12 max-w-sm"
           >
-            Your one-stop destination for premium electronics and professional software accessories.
+            Your one-stop destination for beautiful indoor plants, succulents, and gardening accessories.
           </motion.p>
 
         </div>
@@ -101,12 +104,12 @@ const Login = () => {
         {/* Bottom stats/info */}
         <div className="absolute bottom-12 left-20 z-10 flex gap-8">
           <div>
-            <p className="text-2xl font-black text-slate-900 leading-tight">10k+</p>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Premium Products</p>
+            <p className="text-2xl font-black text-white leading-tight">1k+</p>
+            <p className="text-xs font-bold text-emerald-200 uppercase tracking-widest">Plant Varieties</p>
           </div>
           <div>
-            <p className="text-2xl font-black text-slate-900 leading-tight">24/7</p>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Expert Support</p>
+            <p className="text-2xl font-black text-white leading-tight">24/7</p>
+            <p className="text-xs font-bold text-emerald-200 uppercase tracking-widest">Plant Care Support</p>
           </div>
         </div>
       </motion.div>
@@ -124,7 +127,7 @@ const Login = () => {
             <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-200">
               <ShoppingBag size={20} />
             </div>
-            <span className="text-xl font-black text-slate-900 tracking-tighter uppercase">G-Store</span>
+            <span className="text-xl font-black text-slate-900 tracking-tighter uppercase">Plantify</span>
           </div>
 
           <div className="mb-10 text-center lg:text-left">
@@ -152,7 +155,7 @@ const Login = () => {
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="example@gstore.com"
+                  placeholder="example@plantify.com"
                   className="w-full bg-slate-50 border border-slate-100 rounded-2xl py-4 pl-12 pr-4 outline-none focus:bg-white focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/5 transition-all font-semibold placeholder:text-slate-600"
                   disabled={loading}
                 />

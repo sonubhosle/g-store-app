@@ -7,6 +7,7 @@ import {
     GET_HOT_DEALS_REQUEST, GET_HOT_DEALS_SUCCESS, GET_HOT_DEALS_FAILED,
     GET_PRODUCTS_BY_CATEGORY_REQUEST, GET_PRODUCTS_BY_CATEGORY_SUCCESS, GET_PRODUCTS_BY_CATEGORY_FAILED,
     GET_RELATED_PRODUCTS_REQUEST, GET_RELATED_PRODUCTS_SUCCESS, GET_RELATED_PRODUCTS_FAILED,
+    GET_SUGGESTIONS_REQUEST, GET_SUGGESTIONS_SUCCESS, GET_SUGGESTIONS_FAILED,
     CLEAR_PRODUCT_ERRORS,
 } from './Types';
 
@@ -16,6 +17,7 @@ const initialState = {
     hotDeals: [],             
     categoryProducts: [],     
     relatedProducts: [],      
+    suggestions: [],
     loading: false,
     error: null,
     createSuccess: false,     
@@ -143,7 +145,21 @@ const productReducer = (state = initialState, action) => {
 
         case GET_RELATED_PRODUCTS_FAILED:
             return { ...state, loading: false, error: action.payload };
-
+ 
+        case GET_SUGGESTIONS_REQUEST:
+            return { ...state, loading: true, error: null };
+ 
+        case GET_SUGGESTIONS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                suggestions: action.payload,
+                error: null,
+            };
+ 
+        case GET_SUGGESTIONS_FAILED:
+            return { ...state, loading: false, error: action.payload };
+ 
         case CLEAR_PRODUCT_ERRORS:
             return { ...state, error: null };
 

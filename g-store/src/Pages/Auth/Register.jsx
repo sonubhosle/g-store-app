@@ -77,6 +77,8 @@ const Register = () => {
   };
 
   const authInput = "w-full bg-slate-50 border border-slate-100 rounded-2xl py-3 pl-12 outline-none transition-all duration-300 font-bold placeholder:text-slate-300 focus:bg-white focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/5";
+  const leafPattern = "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-5.807 5.807l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-11.614 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-5.807-5.807l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83zm-11.614 0l.83.83-1.66 1.66-.83-.83.83-.83-.83-.83 1.66-1.66.83.83z' fill='%2310b981' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\")";
+
   return (
     <div className="h-screen flex bg-white overflow-hidden">
       {/* Left Side: Branding/Info */}
@@ -84,12 +86,13 @@ const Register = () => {
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="hidden lg:flex lg:w-2/5 relative bg-slate-900 flex-col justify-center p-16 h-full overflow-hidden"
+        className="hidden lg:flex lg:w-2/5 relative flex-col justify-center p-16 h-full overflow-hidden"
+        style={{ backgroundColor: '#064e3b', backgroundImage: leafPattern }}
       >
         {/* Abstract Background Elements */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-[-20%] left-[-20%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]" />
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          <div className="absolute top-[-20%] left-[-20%] w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[100px]" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-green-500/20 rounded-full blur-[100px]" />
         </div>
 
         <div className="relative z-10">
@@ -99,10 +102,10 @@ const Register = () => {
             transition={{ delay: 0.3 }}
             className="flex items-center gap-3 mb-10"
           >
-            <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+            <div className="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-emerald-500/30">
               <ShoppingBag size={24} />
             </div>
-            <span className="text-2xl font-black text-white tracking-tighter uppercase">G-Store</span>
+            <span className="text-2xl font-black text-white tracking-tighter uppercase">Plantify</span>
           </motion.div>
 
           <motion.h1
@@ -111,17 +114,17 @@ const Register = () => {
             transition={{ delay: 0.4 }}
             className="text-5xl font-black text-white leading-tight mb-6"
           >
-            Join the <br />
-            <span className="text-emerald-400 text-6xl">Evolution.</span>
+            Grow with <br />
+            <span className="text-emerald-400 text-6xl">Nature.</span>
           </motion.h1>
 
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-slate-600 text-lg font-medium mb-12 max-w-sm"
+            className="text-emerald-50 text-lg font-medium mb-12 max-w-sm"
           >
-            Create an account to unlock exclusive deals, early access to new drops, and a personalized experience.
+            Join our community of plant lovers. Get exclusive access to rare plants, care guides, and personalized green tips.
           </motion.p>
 
         </div>

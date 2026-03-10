@@ -8,6 +8,7 @@ import {
     GET_HOT_DEALS_REQUEST, GET_HOT_DEALS_SUCCESS, GET_HOT_DEALS_FAILED,
     GET_PRODUCTS_BY_CATEGORY_REQUEST, GET_PRODUCTS_BY_CATEGORY_SUCCESS, GET_PRODUCTS_BY_CATEGORY_FAILED,
     GET_RELATED_PRODUCTS_REQUEST, GET_RELATED_PRODUCTS_SUCCESS, GET_RELATED_PRODUCTS_FAILED,
+    GET_SUGGESTIONS_REQUEST, GET_SUGGESTIONS_SUCCESS, GET_SUGGESTIONS_FAILED,
     CLEAR_PRODUCT_ERRORS,
 } from './Types';
 
@@ -142,8 +143,20 @@ export const getRelatedProducts = (productId) => async (dispatch) => {
         dispatch({ type: GET_RELATED_PRODUCTS_FAILED, payload: message });
     }
 };
-
-
+ 
+ 
+export const getSuggestions = () => async (dispatch) => {
+    dispatch({ type: GET_SUGGESTIONS_REQUEST });
+    try {
+        const { data } = await api.get('/api/v1/products/');
+        dispatch({ type: GET_SUGGESTIONS_SUCCESS, payload: data });
+    } catch (error) {
+        const message = error.response?.data?.message || error.message;
+        dispatch({ type: GET_SUGGESTIONS_FAILED, payload: message });
+    }
+};
+ 
+ 
 export const clearProductErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_PRODUCT_ERRORS });
 };

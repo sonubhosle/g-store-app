@@ -54,8 +54,17 @@ const createProduct = async (reqData, files) => {
 };
 
 // GET ALL PRODUCTS
-const getAllProducts = async () => {
-  return await Product.find()
+const getAllProducts = async (query = {}) => {
+  let filter = {};
+  if (query.category) {
+    const normalized = query.category.trim().replace(/[_\-\s]+/g, '[-_\\s]*');
+    filter.category = {
+      $regex: `^\\s*${normalized}\\s*$`,
+      $options: 'i'
+    };
+  }
+
+  return await Product.find(filter)
     .populate("ratings")
     .populate("reviews");
 };

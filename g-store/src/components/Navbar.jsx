@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { findUserCart } from '../states/Cart/Action';
 import { logoutUser } from '../states/Auth/Action';
 import { getWishlist } from '../states/Wishlist/Action';
-import { getAllProducts } from '../states/Products/Action';
+import { getAllProducts, getSuggestions } from '../states/Products/Action';
 // Helper: wrap matching substring with <mark>
 const HighlightMatch = ({ text, query }) => {
   if (!query) return <span>{text}</span>;
@@ -46,7 +46,7 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.auth)
   const { cart } = useSelector((state) => state.cart)
   const { wishlist } = useSelector((state) => state.wishlist || {})
-  const { products } = useSelector((state) => state.products)
+  const { suggestions: products } = useSelector((state) => state.products)
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -56,7 +56,7 @@ const Navbar = () => {
     dispatch(findUserCart())
     dispatch(getWishlist())
     // Load products globally so search suggestions always work
-    dispatch(getAllProducts({}))
+    dispatch(getSuggestions())
   }, [dispatch])
 
   // Close suggestions on click-outside or Escape key
@@ -125,8 +125,8 @@ const Navbar = () => {
                 <ShoppingBasket className="text-white" size={24} />
               </div>
               <span className="">
-                <p className='text-3xl font-black tracking-tight text-slate-900'>Quick<span className="text-emerald-600">art</span></p>
-                <p className='text-slate-600 text-sm flex items-center gap-2 mt-1'><div className="w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-emerald-200"></div> Quick - Fast</p>
+                <p className='text-3xl font-black tracking-tight text-slate-900'>Plant<span className="text-emerald-600">ify</span></p>
+                <p className='text-slate-600 text-sm flex items-center gap-2 mt-1'><div className="w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-emerald-200"></div> Grow - Green</p>
               </span>
             </Link>
 
@@ -311,10 +311,17 @@ const Navbar = () => {
                           <Link
                             to="/cart"
                             onClick={() => setIsProfileOpen(false)}
-                            className="flex items-center gap-3 px-6 py-3 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
+                            className="flex items-center justify-between px-6 py-3 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
                           >
-                            <ShoppingBag size={18} />
-                            <span className="font-bold text-sm">Shopping Cart</span>
+                            <div className="flex items-center gap-3">
+                              <ShoppingBag size={18} />
+                              <span className="font-bold text-sm">Shopping Cart</span>
+                            </div>
+                            {cart?.totalItem > 0 && (
+                              <span className="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                {cart.totalItem}
+                              </span>
+                            )}
                           </Link>
 
                           <Link
@@ -419,8 +426,15 @@ const Navbar = () => {
                 <Link to="/orders" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl font-bold text-slate-700">
                   <Package size={20} /> My Orders
                 </Link>
-                <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl font-bold text-slate-700">
-                  <ShoppingBag size={20} /> My Cart
+                <Link to="/cart" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl font-bold text-slate-700">
+                  <div className="flex items-center gap-3">
+                    <ShoppingBag size={20} /> My Cart
+                  </div>
+                  {cart?.totalItem > 0 && (
+                    <span className="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                      {cart.totalItem}
+                    </span>
+                  )}
                 </Link>
                 <Link
                   to="/auth"
